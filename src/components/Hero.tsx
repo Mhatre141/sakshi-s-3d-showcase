@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Download } from "lucide-react";
-import Hero3D from "./Hero3D";
+import React, { Suspense, lazy } from "react";
+
+const Hero3D = lazy(() => import("./Hero3D"));
 
 export default function Hero() {
   return (
@@ -44,7 +46,9 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.2 }}
           className="h-[400px] md:h-[520px] w-full"
         >
-          <Hero3D />
+          <Suspense fallback={<div className="w-full h-full flex items-center justify-center">Loading 3D Scene...</div>}>
+            <Hero3D />
+          </Suspense>
         </motion.div>
       </div>
       <motion.div
